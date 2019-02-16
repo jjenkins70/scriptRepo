@@ -4,6 +4,7 @@
 
 #variables
 backupdir=/Volumes/BackupHD/backup
+username=YOURVALUEHERE
 
 now=`date +'%m-%d-%Y'`
 
@@ -13,7 +14,7 @@ echo $now
 
 # Main Loop
 #mkdir -p $backupdir/$now   #No longer using folder / date format
-for name in Applications Library Network System Users/jjenkins etc home opt usr
+for name in Applications Library Network System Users/${username} etc home opt usr
 do
 echo "Attempting to backup $name"
 sudo rsync -zav /$name $backupdir
@@ -23,5 +24,5 @@ done
 sudo touch $backupdir/$now.txt
 
 #Delete backuped trash file
-rm -rf /Volumes/BackupHD/backup/jjenkins/.Trash/*
+rm -rf /Volumes/BackupHD/backup/${username}/.Trash/*
 
